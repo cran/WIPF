@@ -18,11 +18,11 @@ WIPF1(
 \arguments{
 \item{seed}{A vector of non-negative values with the initial values.}
 
-\item{weights}{A vector of non-negative values with the weights associated to each component of \code{seed}and with the same length as \code{seed}.}
+\item{weights}{A vector of non-negative values with the weights associated to each component of \code{seed} and with the same length as \code{seed}.}
 
 \item{margin}{A non-negative scalar with the (weighted) marginal total to be fitted. Default, \code{1}.}
 
-\item{normalize}{\code{TRUE}/\code{FALSE} argument indicating if weights should be normalized
+\item{normalize}{\code{TRUE}/\code{FALSE} argument indicating whether weights should be normalized
 to sum 1 before building the weighted sum to be compared with the margin value.
 Default, \code{TRUE}. Normalization is necessary when we want to adjust a set of indexes
 for which the margin correspond to other index that is a theoretical convex
@@ -47,7 +47,7 @@ When \code{full = TRUE} a list with the following components:
 \item{sol}{ An object similar to \code{seed} with the solution reached at convergence (or when the maximum number of iterations is reached).}
 \item{iter}{ Number of iterations when the algorithm stops.}
 \item{error.margins}{ An object similar to \code{margin} with the absolute differences between the values in \code{margin} and
-the weighted sum(s) of the values in \code{sol}.}
+the weighted sum of the values in \code{sol}.}
 \item{inputs}{ A list containing all the objects with the values used as arguments by the function.}
 }
 \description{

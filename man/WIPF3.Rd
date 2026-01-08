@@ -37,8 +37,8 @@ WIPF3(
 
 \item{margin23}{A CxL matrix of positive values with the target (weighted) marginal sum across both rows to be fitted.}
 
-\item{normalize}{Logical (\code{TRUE}/\code{FALSE}) argument indicating whether the weights should be normalized
-across all dimensions (for either row, column, layer, row-column, row-layer or column-layer weights to sum 1)
+\item{normalize}{\code{TRUE}/\code{FALSE} argument indicating whether the weights should be normalized across all dimensions
+(for either row, column, layer, row-column, row-layer or column-layer weights to sum 1)
 before constructing the weighted sums for comparison with the margin values.
 Default, \code{TRUE}. Normalization is essential when adjusting a set of indexes where the margins represent
 theoretical convex combinations of the inner indexes.
@@ -65,17 +65,17 @@ When \code{full = TRUE} a list with the following components:
 \item{dev.margins}{ A list with a set of objects similar to the margins with absolute maximum deviations
 between the values in margins and the corresponding weighted sums of the values in \code{sol}.}
 \item{margin1}{ A R-length vector of positive values with the actual margin1 object used to reach the solution.
-This coincides with \code{margin1} when all the margins are compatible given the weights.}
+This coincides with \code{margin1} even when all the margins are not compatible given the weights.}
 \item{margin2}{ A C-length vector of positive values with the actual margin2 object used to reach the solution.
 This coincides with \code{margin2} when all the margins are compatible given the weights.}
 \item{margin3}{ A L-length vector of positive values with the actual margin3 object used to reach the solution.
-This coincides with \code{margin2} when all the margins are compatible given the weights.}
+This coincides with \code{margin3} when all the margins are compatible given the weights.}
 \item{margin12}{ A RxC matrix of positive values with the actual margin12 object used to reach the solution.
-This coincides with \code{margin2} when all the margins are compatible given the weights.}
+This coincides with \code{margin12} when all the margins are compatible given the weights.}
 \item{margin13}{ A RxL matrix of positive values with the actual margin13 object used to reach the solution.
-This coincides with \code{margin2} when all the margins are compatible given the weights.}
+This coincides with \code{margin13} when all the margins are compatible given the weights.}
 \item{margin23}{ A CxL matrix of positive values with the actual margin23 object used to reach the solution.
-This coincides with \code{margin2} when all the margins are compatible given the weights.}
+This coincides with \code{margin23} when all the margins are compatible given the weights.}
 \item{inputs}{ A list containing all the objects with the values used as arguments by the function.}
 }
 \description{

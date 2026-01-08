@@ -32,12 +32,8 @@
 #'
 #' @param margin23 A CxL matrix of positive values with the target (weighted) marginal sum across both rows to be fitted.
 #'
-#' @param normalize `TRUE`/`FALSE` argument indicating if weights should be normalized (across all its dimensions)
-#'                   to row-, column- and layer-sum 1 before building the weighted sums to be compared with the margin values.
-#'                   Default, `TRUE`.
-#'
-#' @param normalize Logical (`TRUE`/`FALSE`) argument indicating whether the weights should be normalized
-#'                  across all dimensions (for either row, column, layer, row-column, row-layer or column-layer weights to sum 1)
+#' @param normalize `TRUE`/`FALSE` argument indicating whether the weights should be normalized across all dimensions
+#'                  (for either row, column, layer, row-column, row-layer or column-layer weights to sum 1)
 #'                  before constructing the weighted sums for comparison with the margin values.
 #'                  Default, `TRUE`. Normalization is essential when adjusting a set of indexes where the margins represent
 #'                  theoretical convex combinations of the inner indexes.
@@ -64,17 +60,17 @@
 #'  \item{dev.margins}{ A list with a set of objects similar to the margins with absolute maximum deviations
 #'                        between the values in margins and the corresponding weighted sums of the values in `sol`.}
 #'  \item{margin1}{ A R-length vector of positive values with the actual margin1 object used to reach the solution.
-#'                    This coincides with `margin1` when all the margins are compatible given the weights.}
+#'                    This coincides with `margin1` even when all the margins are not compatible given the weights.}
 #'  \item{margin2}{ A C-length vector of positive values with the actual margin2 object used to reach the solution.
 #'                    This coincides with `margin2` when all the margins are compatible given the weights.}
 #'  \item{margin3}{ A L-length vector of positive values with the actual margin3 object used to reach the solution.
-#'                    This coincides with `margin2` when all the margins are compatible given the weights.}
+#'                    This coincides with `margin3` when all the margins are compatible given the weights.}
 #'  \item{margin12}{ A RxC matrix of positive values with the actual margin12 object used to reach the solution.
-#'                    This coincides with `margin2` when all the margins are compatible given the weights.}
+#'                    This coincides with `margin12` when all the margins are compatible given the weights.}
 #'  \item{margin13}{ A RxL matrix of positive values with the actual margin13 object used to reach the solution.
-#'                    This coincides with `margin2` when all the margins are compatible given the weights.}
+#'                    This coincides with `margin13` when all the margins are compatible given the weights.}
 #'  \item{margin23}{ A CxL matrix of positive values with the actual margin23 object used to reach the solution.
-#'                    This coincides with `margin2` when all the margins are compatible given the weights.}
+#'                    This coincides with `margin23` when all the margins are compatible given the weights.}
 #'  \item{inputs}{ A list containing all the objects with the values used as arguments by the function.}
 #'
 #' @note Weighted Iterative proportional fitting is an extension of IPF.
@@ -189,7 +185,7 @@ WIPF3 <- function(seed,
 
   dif <- max(errors$errors)
   iter <- 0L
-  tamanyo <- dim(weights)
+  # tamanyo <- dim(weights)
   delta <- seed
 
   while(dif > tol & iter < maxit){

@@ -8,10 +8,9 @@
 #'               across columns matches `margin1` and the weighted sum across rows
 #'               matches `margin2`.
 #'               If the margins are incompatible given the weights, the function `WIPF1`
-#'               is applied to the initial margins to make the margins compatible
-#'               with the weights. In those cases, margins are updated (are made compatible)
-#'               in increasing order of sub-indices (i.e., `margin2` is adjusted
-#'               to be compatible with `margin1`).
+#'               is applied to the initial margins to make them compatible. In those cases,
+#'               margins are updated (are made compatible) in increasing order of sub-indices
+#'               (i.e., `margin2` is adjusted to make it compatible with `margin1`).
 #'
 #' @author Jose M. Pavia, \email{pavia@@uv.es}
 #'
@@ -23,7 +22,7 @@
 #'
 #' @param margin2 A C-length vector of positive values with the target (weighted) marginal sums across rows to be fitted.
 #'
-#' @param normalize Logical (`TRUE`/`FALSE`) argument indicating whether the weights should be normalized
+#' @param normalize `TRUE`/`FALSE` argument indicating whether the weights should be normalized
 #'                  (across all dimensions, for either row or column weights to sum 1)  before constructing
 #'                  the weighted sums for comparison with the margin values. Default, `TRUE`. Normalization is essential when adjusting
 #'                  a set of indexes where the margins represent theoretical convex combinations of the inner indexes.
@@ -50,7 +49,7 @@
 #'  \item{dev.margins}{ A list with a set of objects similar to the margins with absolute maximum deviations
 #'                        between the values in margins and the corresponding weighted sums of the values in `sol`.}
 #'  \item{margin1}{ A R-length vector of positive values with the actual margin1 object used to reach the solution.
-#'                    This coincides with `margin1` when all the margins are compatible given the weights.}
+#'                    This coincides with `margin1` even when all the margins are not compatible given the weights.}
 #'  \item{margin2}{ A C-length vector of positive values with the actual margin2 object used to reach the solution.
 #'                    This coincides with `margin2` when all the margins are compatible given the weights.}
 #'  \item{inputs}{ A list containing all the objects with the values used as arguments by the function.}
@@ -123,11 +122,11 @@ WIPF2 <- function(seed,
   if(!all(dim(seed) == dim(weights))){
     stop('Error: the objects "seed" and weights" must have the same dimensions.')
   }
-  if(length(margin1) !=0){
+  if(length(margin1) != 0){
     if(nrow(seed) != length(margin1))
       stop('Error: the dimensions of "seed" and margin1" are incompatible.')
   }
-  if(length(margin2) !=0){
+  if(length(margin2) != 0){
     if(ncol(seed) != length(margin2))
       stop('Error: the dimensions of "seed" and margin2" are incompatible.')
   }
@@ -169,7 +168,8 @@ WIPF2 <- function(seed,
     dif <- list("dev1" = rep(0, length(margin1)))
   } else {
     if (abs(sum(margin1*pesos1) - sum(margin2*pesos2)) > tol){
-      warning("The values for arguments 'margin1' and 'margin2' are not compatible given the 'weights', 'margin2' have been updated with WIPF1 using 'margin1' as reference.")
+      warning("The values for arguments 'margin1' and 'margin2' are not compatible given the 'weights',
+              'margin2' have been updated with WIPF1 using 'margin1' as reference.")
       # margin1 <- WIPF1(seed = margin1, weights = rowSums(W),
       #                    normalize = normalize, tol = tol,
       #                   maxit = maxit)

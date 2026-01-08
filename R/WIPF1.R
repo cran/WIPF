@@ -8,11 +8,11 @@
 #'
 #' @param seed A vector of non-negative values with the initial values.
 #'
-#' @param weights A vector of non-negative values with the weights associated to each component of `seed`and with the same length as `seed`.
+#' @param weights A vector of non-negative values with the weights associated to each component of `seed` and with the same length as `seed`.
 #'
 #' @param margin A non-negative scalar with the (weighted) marginal total to be fitted. Default, `1`.
 #'
-#' @param normalize `TRUE`/`FALSE` argument indicating if weights should be normalized
+#' @param normalize `TRUE`/`FALSE` argument indicating whether weights should be normalized
 #'                   to sum 1 before building the weighted sum to be compared with the margin value.
 #'                   Default, `TRUE`. Normalization is necessary when we want to adjust a set of indexes
 #'                   for which the margin correspond to other index that is a theoretical convex
@@ -37,7 +37,7 @@
 #'  \item{sol}{ An object similar to `seed` with the solution reached at convergence (or when the maximum number of iterations is reached).}
 #'  \item{iter}{ Number of iterations when the algorithm stops.}
 #'  \item{error.margins}{ An object similar to `margin` with the absolute differences between the values in `margin` and
-#'                        the weighted sum(s) of the values in `sol`.}
+#'                        the weighted sum of the values in `sol`.}
 #'  \item{inputs}{ A list containing all the objects with the values used as arguments by the function.}
 #'
 #' @note Weighted Iterative proportional fitting is an extension of IPF.
@@ -79,7 +79,7 @@ WIPF1 <- function(seed, weights,
     stop('Error: the objects "seed" and weights" must have the same length.')
   }
   if(length(margin) != 1L | min(margin) < 0){
-    stop('Error: the object "margin" must have a non-negative constant.')
+    stop('Error: the object "margin" must be a non-negative constant.')
   }
 
   inputs <- c(as.list(environment()), list(...))
