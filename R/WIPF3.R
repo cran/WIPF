@@ -57,8 +57,6 @@
 #' When `full = TRUE` a list with the following components:
 #'  \item{sol}{ An object similar to `seed` with the solution reached at convergence (or when the maximum number of iterations is reached).}
 #'  \item{iter}{ Number of iterations when the algorithm stops.}
-#'  \item{dev.margins}{ A list with a set of objects similar to the margins with absolute maximum deviations
-#'                        between the values in margins and the corresponding weighted sums of the values in `sol`.}
 #'  \item{margin1}{ A R-length vector of positive values with the actual margin1 object used to reach the solution.
 #'                    This coincides with `margin1` even when all the margins are not compatible given the weights.}
 #'  \item{margin2}{ A C-length vector of positive values with the actual margin2 object used to reach the solution.
@@ -71,6 +69,11 @@
 #'                    This coincides with `margin13` when all the margins are compatible given the weights.}
 #'  \item{margin23}{ A CxL matrix of positive values with the actual margin23 object used to reach the solution.
 #'                    This coincides with `margin23` when all the margins are compatible given the weights.}
+#'  \item{dev.margins}{ A list with a set of objects similar to the margins with absolute maximum deviations
+#'                        between the values in margins and the corresponding weighted sums of the values in `sol`.}
+#'  \item{dev.congruence}{A list with a set of objects similar to the margins containing the differences
+#'                        between the final margins actually used (after adjusting them,
+#'                        if necessary, to be compatible with the weights) and the original margins provided by the user.}
 #'  \item{inputs}{ A list containing all the objects with the values used as arguments by the function.}
 #'
 #' @note Weighted Iterative proportional fitting is an extension of IPF.
@@ -202,10 +205,20 @@ WIPF3 <- function(seed,
   }
 
   if(full){
-    return(list("sol" = delta, "iter" = iter, "dev.margins" = errors$dif,
+    dif2 <- list("dev1" = margins$margin1 - inputs$margin1,
+                 "dev2" = margins$margin2 - inputs$margin2,
+                 "dev3" = margins$margin3 - inputs$margin3,
+                 "dev12" = margins$margin12 - inputs$margin12,
+                 "dev13" = margins$margin13 - inputs$margin13,
+                 "dev23" = margins$margin23 - inputs$margin23
+                 )
+    dif2 <- dif2[sapply(dif2, length) > 0]
+
+    return(list("sol" = delta, "iter" = iter,
                 "margin1" = margins$margin1, "margin2" = margins$margin2,
                 "margin3" = margins$margin3, "margin12" = margins$margin12,
                 "margin13" = margins$margin13, "margin23" = margins$margin23,
+                "dev.margins" = errors$dif, "dev.congruence" = dif2,
                 "inputs" = inputs))
   } else {
     return(delta)

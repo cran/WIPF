@@ -62,8 +62,6 @@ When \code{full = FALSE} an object similar to \code{seed} with the solution reac
 When \code{full = TRUE} a list with the following components:
 \item{sol}{ An object similar to \code{seed} with the solution reached at convergence (or when the maximum number of iterations is reached).}
 \item{iter}{ Number of iterations when the algorithm stops.}
-\item{dev.margins}{ A list with a set of objects similar to the margins with absolute maximum deviations
-between the values in margins and the corresponding weighted sums of the values in \code{sol}.}
 \item{margin1}{ A R-length vector of positive values with the actual margin1 object used to reach the solution.
 This coincides with \code{margin1} even when all the margins are not compatible given the weights.}
 \item{margin2}{ A C-length vector of positive values with the actual margin2 object used to reach the solution.
@@ -76,6 +74,11 @@ This coincides with \code{margin12} when all the margins are compatible given th
 This coincides with \code{margin13} when all the margins are compatible given the weights.}
 \item{margin23}{ A CxL matrix of positive values with the actual margin23 object used to reach the solution.
 This coincides with \code{margin23} when all the margins are compatible given the weights.}
+\item{dev.margins}{ A list with a set of objects similar to the margins with absolute maximum deviations
+between the values in margins and the corresponding weighted sums of the values in \code{sol}.}
+\item{dev.congruence}{A list with a set of objects similar to the margins containing the differences
+between the final margins actually used (after adjusting them,
+if necessary, to be compatible with the weights) and the original margins provided by the user.}
 \item{inputs}{ A list containing all the objects with the values used as arguments by the function.}
 }
 \description{

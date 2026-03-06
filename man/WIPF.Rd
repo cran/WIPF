@@ -52,10 +52,14 @@ When \code{full = FALSE} an object similar to \code{seed} with the solution reac
 When \code{full = TRUE} a list with the following components:
 \item{sol}{ An object similar to \code{seed} with the solution reached at convergence (or when the maximum number of iterations is reached).}
 \item{iter}{ Number of iterations when the algorithm stops.}
-\item{dev.margins}{ A list of arrays similar to the \code{margins} output containing the absolute maximum deviations
-between the values in \code{margins} and the corresponding weighted sums of the values in \code{sol}.}
 \item{margins}{ A list of arrays similar \code{margins} with the actual margins used to reach the solution.
 Each array whose margins are compatible given the weights coincides with the original array.}
+\item{dev.margins}{ A list of arrays similar to the \code{margins} output containing the absolute maximum deviations
+between the values in \code{margins} and the corresponding weighted sums of the values in \code{sol}.}
+\item{dev.congruence}{A list of arrays, similar to the \code{margins} output, containing the differences
+between the values in \code{margins} and those in \code{inputs$margins}. In other words,
+it shows the difference between the final margins actually used (after adjusting them,
+if necessary, to be compatible with the weights) and the original margins provided by the user.}
 \item{inputs}{ A list containing all the objects with the values used as arguments by the function.}
 }
 \description{

@@ -46,7 +46,7 @@ When \code{full = FALSE} an object similar to \code{seed} with the solution reac
 When \code{full = TRUE} a list with the following components:
 \item{sol}{ An object similar to \code{seed} with the solution reached at convergence (or when the maximum number of iterations is reached).}
 \item{iter}{ Number of iterations when the algorithm stops.}
-\item{error.margins}{ An object similar to \code{margin} with the absolute differences between the values in \code{margin} and
+\item{dev.margins}{ An object similar to \code{margin} with the absolute differences between the values in \code{margin} and
 the weighted sum of the values in \code{sol}.}
 \item{inputs}{ A list containing all the objects with the values used as arguments by the function.}
 }

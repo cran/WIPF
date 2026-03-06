@@ -1,7 +1,7 @@
 Package: WIPF
 Type: Package
 Title: Weighted Iterative Proportional Fitting
-Version: 0.1.0-3
+Version: 0.1.0-4
 Authors@R: 
     c(person(given = "Jose M.",
            family = "Pavía",
@@ -15,9 +15,9 @@ License: GPL (>= 2)
 Encoding: UTF-8
 RoxygenNote: 7.2.3
 NeedsCompilation: no
-Packaged: 2026-01-03 15:02:38 UTC; mariaamparo
+Packaged: 2026-03-06 20:03:11 UTC; mariaamparo
 Author: Jose M. Pavía [aut, cre] (ORCID:
     <https://orcid.org/0000-0002-0129-726X>)
 Maintainer: Jose M. Pavía <jose.m.pavia@uv.es>
 Repository: CRAN
-Date/Publication: 2026-01-08 00:20:29 UTC
+Date/Publication: 2026-03-06 20:40:02 UTC

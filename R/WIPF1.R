@@ -36,7 +36,7 @@
 #' When `full = TRUE` a list with the following components:
 #'  \item{sol}{ An object similar to `seed` with the solution reached at convergence (or when the maximum number of iterations is reached).}
 #'  \item{iter}{ Number of iterations when the algorithm stops.}
-#'  \item{error.margins}{ An object similar to `margin` with the absolute differences between the values in `margin` and
+#'  \item{dev.margins}{ An object similar to `margin` with the absolute differences between the values in `margin` and
 #'                        the weighted sum of the values in `sol`.}
 #'  \item{inputs}{ A list containing all the objects with the values used as arguments by the function.}
 #'
@@ -100,7 +100,7 @@ WIPF1 <- function(seed, weights,
     iter <- iter + 1L
   }
   if(full){
-    return(list("sol" = delta, "iter" = iter, "error.margins" = margin - suma, "inputs" = inputs))
+    return(list("sol" = delta, "iter" = iter, "dev.margins" = margin - suma, "inputs" = inputs))
   } else {
     return(delta)
   }

@@ -54,10 +54,14 @@
 #' When `full = TRUE` a list with the following components:
 #'  \item{sol}{ An object similar to `seed` with the solution reached at convergence (or when the maximum number of iterations is reached).}
 #'  \item{iter}{ Number of iterations when the algorithm stops.}
-#'  \item{dev.margins}{ A list of arrays similar to the `margins` output containing the absolute maximum deviations
-#'                      between the values in `margins` and the corresponding weighted sums of the values in `sol`.}
 #'  \item{margins}{ A list of arrays similar `margins` with the actual margins used to reach the solution.
 #'                    Each array whose margins are compatible given the weights coincides with the original array.}
+#'  \item{dev.margins}{ A list of arrays similar to the `margins` output containing the absolute maximum deviations
+#'                      between the values in `margins` and the corresponding weighted sums of the values in `sol`.}
+#'  \item{dev.congruence}{A list of arrays, similar to the `margins` output, containing the differences
+#'                        between the values in `margins` and those in `inputs$margins`. In other words,
+#'                        it shows the difference between the final margins actually used (after adjusting them,
+#'                        if necessary, to be compatible with the weights) and the original margins provided by the user.}
 #'  \item{inputs}{ A list containing all the objects with the values used as arguments by the function.}
 #'
 #' @note Weighted Iterative Proportional Fitting is an extension of IPF.
@@ -190,8 +194,15 @@ WIPF <- function(seed,
   names(margins) <- names(errors$dif) <- margin_names
 
   if(full){
-    return(list("sol" = delta, "iter" = iter, "dev.margins" = errors$dif,
-                "margins" = margins, "inputs" = inputs))
+    ff <- function(a, b) {
+      if (is.null(a) || is.null(b)) return(NULL)
+      a - b
+    }
+    dev.congruence <- mapply(ff, margins, mg.in$margins, SIMPLIFY = FALSE)
+    names(dev.congruence) <- margin_names
+    return(list("sol" = delta, "iter" = iter, "margins" = margins,
+                "dev.margins" = errors$dif, "dev.congruence" = dev.congruence,
+                "inputs" = inputs))
   } else {
     return(delta)
   }

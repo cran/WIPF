@@ -1,3 +1,12 @@
+### Package changes from previous WIPF version 0.1.0-3
+
+Compared to version 0.1.0-3 of WIPF, in the new version:
+
+* A new element, `dev.congruence`, has been included in the output of the functions `WIPF`, `WIPF2`, and `WIPF3` when used with argument `full = TRUE`.
+
+* The names of all the elements of the `WIPF` has been harmonized. 
+
+
 ### Package changes from previous WIPF version 0.1.0-1
 
 Compared to version 0.1.0-1 of WIPF, the new version includes:
